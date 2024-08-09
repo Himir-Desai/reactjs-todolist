@@ -1,0 +1,149 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: rgb(0, 107, 107);
+}
+
+main {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10% auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+header input {
+  width: 79.75%;
+  height: 5rem;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: lightcyan;
+  font-size: 3rem;
+  font-family: "Audiowide", sans-serif;
+}
+
+header button {
+  width: 19.75%;
+  height: 5rem;
+  border: 3px solid white;
+  border-radius: 10px;
+  background-color: rgb(0, 107, 107);
+  font-size: 3rem;
+  color: white;
+  font-family: "Audiowide", sans-serif;
+}
+
+header button:hover {
+  background-color: lightcyan;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+ul {
+  width: 100%;
+  list-style: none;
+  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+li {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: lightcyan;
+  font-size: large;
+  font-family: "Audiowide", sans-serif;
+  margin: 10px 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  order: 1;
+  transition: all 0.5s;
+}
+
+li div {
+  width: 95%;
+  display: flex;
+}
+
+li button {
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+}
+
+li div button i {
+  margin-right: 1rem;
+  font-size: 1.5rem;
+}
+
+li button i:hover {
+  cursor: pointer;
+}
+
+.completed {
+  text-decoration: line-through;
+  order: 2;
+}
+
+.delete {
+  transition: color 0.1s, scale 0.1s;
+}
+
+.delete:hover {
+  color: red;
+  scale: 1.2;
+}
+
+.delete:active {
+  scale: 0.8;
+  transition: scale 0.3s;
+}
+
+.edit {
+  transition: color 0.2s, scale 0.1s;
+}
+
+.edit:hover {
+  scale: 1.2;
+}
+
+.edit:active {
+  scale: 0.8;
+  transition: scale 0.3s;
+}
+
+@media only screen and (max-width: 1000px) {
+  li div {
+    width: 90%;
+  }
+  header input {
+    width: 100%;
+    font-size: 2rem;
+  }
+
+  header button {
+    margin-top: 1rem; 
+    width: 100%;
+    height: 2rem;
+    font-size: 1rem;
+  }
+}
