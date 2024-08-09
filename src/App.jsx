@@ -3,19 +3,23 @@ import TodoInput from "./components/TodoInput"
 import TodoList from "./components/TodoList"
 
 function App() {
-  const [todos, setTodos] = useState([
-    ["Do React", false],
-    ["Do Competitive Programming", false],
-    ["Play Minecraft", false]
-  ])
+  const [todos, setTodos] = useState([])
   const [todoValue, setTodoValue] = useState("")
+
+  function getVisibility() {
+    if (todos.length == 0) {
+      return ""
+    } else {
+      return "hidden"
+    }
+  }
   
   function persistData(newList) {
     localStorage.setItem('todos', JSON.stringify({ todos: newList}))
   }
 
   function addTodo(Todo) {
-    const newTodos = [[Todo, false]].concat(todos);
+    const newTodos = [ ...todos, [Todo, false, false]];
     persistData(newTodos)
     setTodos(newTodos)
   }
@@ -23,6 +27,13 @@ function App() {
   function toggleTodo(index) {
     const newTodos = [...todos];
     newTodos[index][1] = !newTodos[index][1];
+    persistData(newTodos)
+    setTodos(newTodos)
+  }
+
+  function deleteTodoAnimate(index) {
+    const newTodos = [...todos];
+    newTodos[index][2] = true;
     persistData(newTodos)
     setTodos(newTodos)
   }
@@ -59,7 +70,7 @@ function App() {
   return (
     <main>
       <TodoInput setTodoValue={setTodoValue} todoValue={todoValue} addTodo={addTodo} />
-      <TodoList editTodo={editTodo} deleteTodo={deleteTodo} toggleTodo={toggleTodo} todos={todos}/>
+      <TodoList deleteTodoAnimate={deleteTodoAnimate} getVisibility={getVisibility} editTodo={editTodo} deleteTodo={deleteTodo} toggleTodo={toggleTodo} todos={todos}/>
     </main>
   )
 }

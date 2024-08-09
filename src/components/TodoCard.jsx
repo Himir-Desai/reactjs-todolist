@@ -1,9 +1,10 @@
 import React from 'react'
 
-export default function TodoCard(props) {
-    const {todo, toggleTodo, deleteTodo, index, editTodo} = props;
+function TodoCard(props) {
+    const {todo, toggleTodo, deleteTodoAnimate, deleteTodo, index, editTodo} = props;
     let icon = "";
     let completedClass = ""
+    let deleteClass = ""
 
     if (todo[1]) {
         icon = "fa-regular fa-square-check"
@@ -13,13 +14,20 @@ export default function TodoCard(props) {
         completedClass = ""
     }
     
+    if (todo[2]) {
+        deleteClass = "animate"
+    } else {
+        deleteClass = ""
+    }
+    
     return (
-        <li className={completedClass}>
+        <li className={deleteClass}>
             <div>
                 <button onClick = {()=>{toggleTodo(index)}}>    
                     <i className={icon}></i>
                 </button>
-                <p className={completedClass}>{todo[0]}</p>
+                
+                <div><line className={completedClass}></line><p>{todo[0]}</p></div>
             </div>
 
             <button onClick = {()=>{
@@ -28,10 +36,18 @@ export default function TodoCard(props) {
             <i className="fa-regular fa-pen-to-square edit"></i>
             </button>
 
-            <button onClick = {()=>{deleteTodo(index)}}>    
+            <button onClick = {()=>{
+                    deleteTodoAnimate(index)
+                    setTimeout(()=>{
+                        deleteTodo(index)
+                    }, 400)
+
+                }}>    
             <i className="fa-solid fa-trash delete"></i>
             </button>
             
         </li>
     )
 }
+
+export default TodoCard
