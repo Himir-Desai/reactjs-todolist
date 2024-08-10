@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
+import EditCard from './EditCard';
 
 function TodoCard(props) {
-    const {todo, toggleTodo, deleteTodoAnimate, deleteTodo, index, editTodo} = props;
+    const {todo, toggleTodo, deleteTodoAnimate, deleteTodo, index, editTodoInplace} = props;
     let icon = "";
     let completedClass = ""
     let deleteClass = ""
+    const [renderEditCard, setRenderEditCard] = useState(false);
 
     if (todo[1]) {
         icon = "fa-regular fa-square-check"
@@ -20,8 +22,13 @@ function TodoCard(props) {
         deleteClass = ""
     }
     
+    if (renderEditCard) {
+        return (
+            <EditCard setRenderEditCard={setRenderEditCard} editTodoInplace={editTodoInplace} todo={todo} index={index}></EditCard>
+        )
+    }
     return (
-        <li className={deleteClass}>
+        <li className={deleteClass + " " + completedClass}>
             <div>
                 <button onClick = {()=>{toggleTodo(index)}}>    
                     <i className={icon}></i>
@@ -31,7 +38,7 @@ function TodoCard(props) {
             </div>
 
             <button onClick = {()=>{
-                editTodo(index)
+                setRenderEditCard(true)
             }}>    
             <i className="fa-regular fa-pen-to-square edit"></i>
             </button>
@@ -45,7 +52,6 @@ function TodoCard(props) {
                 }}>    
             <i className="fa-solid fa-trash delete"></i>
             </button>
-            
         </li>
     )
 }

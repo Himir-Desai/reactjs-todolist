@@ -49,6 +49,14 @@ function App() {
     setTodos(newTodos)
   }
 
+  function editTodoInplace(index, todoEditValue) {
+    let newTodos = [...todos]
+    newTodos[index][0] = todoEditValue
+    newTodos[index][1] = false
+    setTodos(newTodos)
+    persistData(newTodos)
+  }
+
   function editTodo(index) {
     setTodoValue(todos[index][0])
     deleteTodo(index)
@@ -70,7 +78,7 @@ function App() {
   return (
     <main>
       <TodoInput setTodoValue={setTodoValue} todoValue={todoValue} addTodo={addTodo} />
-      <TodoList deleteTodoAnimate={deleteTodoAnimate} getVisibility={getVisibility} editTodo={editTodo} deleteTodo={deleteTodo} toggleTodo={toggleTodo} todos={todos}/>
+      <TodoList deleteTodoAnimate={deleteTodoAnimate} getVisibility={getVisibility} editTodoInplace={editTodoInplace} deleteTodo={deleteTodo} toggleTodo={toggleTodo} todos={todos}/>
     </main>
   )
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import TodoCard from './TodoCard'
 
 export default function TodoList(props) {
-    const {todos, toggleTodo, deleteTodo, deleteTodoAnimate, getVisibility, editTodo} = props;
+    const {todos, toggleTodo, deleteTodo, deleteTodoAnimate, getVisibility, editTodoInplace} = props;
 
     return (
         <ul>
@@ -13,7 +13,7 @@ export default function TodoList(props) {
             {todos.length == 0}
             {todos.map((todo, todoIndex) => {
                 return (
-                    <TodoCard deleteTodoAnimate={deleteTodoAnimate} editTodo={editTodo} deleteTodo={deleteTodo} index={todoIndex} toggleTodo={toggleTodo} todo={todo} key={todoIndex}></TodoCard>
+                    <TodoCard deleteTodoAnimate={deleteTodoAnimate} editTodoInplace={editTodoInplace} deleteTodo={deleteTodo} index={todoIndex} toggleTodo={toggleTodo} todo={todo} key={todoIndex}></TodoCard>
                 )
             })}
         </ul>
