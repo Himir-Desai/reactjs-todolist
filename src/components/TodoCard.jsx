@@ -27,7 +27,7 @@ function TodoCard(props) {
                     <i className={icon}></i>
                 </button>
                 
-                <div><line className={completedClass}></line><p>{todo[0]}</p></div>
+                <div><p className={completedClass}>{todo[0]}</p></div>
             </div>
 
             <button onClick = {()=>{
